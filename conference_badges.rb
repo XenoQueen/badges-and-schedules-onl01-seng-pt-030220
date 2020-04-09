@@ -1,30 +1,23 @@
-  def get_badge(name)
-    "Hello, my name is #{name}."
-  end
+def badge_maker(name)
+  return "Hello, my name is #{name}."
+end
 
-  def get_badges(names_arr)
-    badges_arr = []
-    names_arr.each do |name|
-      badges_arr << get_badge(name)
-    end
-    badges_arr
-  end
+def batch_badge_creator(array)
+  output_array = []
+  array.each {|element| output_array.push(badge_maker(element))}
+  return output_array
+end
 
-  speakers_arr = ["Edsger", "Ada", "Charles", "Alan", "Grace", "Linus", "Matz"]
+def assign_rooms(speakers)
+  output_array = []
+  speakers.each_with_index{|element,index| output_array.push("Hello, #{element}! You'll be assigned to room #{(index + 1)}!")}
+  return output_array
+end
 
-  def assign_rooms(speakers_arr)
-    room_assigns = []
-    speakers_arr.each_with_index do |speaker, number|
-      room_assigns << "Hello, #{speaker}! You'll be assigned to room #{number+1}!"
-    end
-    room_assigns
-  end
+def printer(speakers)
+  badge_array = batch_badge_creator(speakers)
+  room_array = assign_rooms(speakers)
 
-  def printout(names)
-    badges   =   get_badges(names)
-    schedule = assign_rooms(names)
-    badges.each {|badge| puts badge}
-    schedule.each {|assignment| puts assignment}
-  end
-
-  printout(speakers_arr)
+  badge_array.each{|element| puts element}
+  room_array.each{|element| puts element}
+end
